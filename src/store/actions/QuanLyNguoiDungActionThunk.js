@@ -18,3 +18,20 @@ export const danhNhapAction=createAsyncThunk('quanLyNguoiDung/danhNhapAction',as
         NotifiFunction("error", "Đăng nhập thất bại", error?.response.data.content);
     }
 })
+export const layThongTinNguoiDungAction=createAsyncThunk('quanLyNguoiDung/layThongTinNguoiDungAction',async()=>{
+    
+    try {
+        const {data}=await quanLyNguoiDungServices.layThongTinNguoiDung()
+        console.log({data})
+        if(data.statusCode===200){
+            
+            return data.content
+        }
+        
+       
+    } catch (error) {
+        NotifiFunction("error", "Đăng nhập thất bại", error?.response.data.content);
+    }
+})
+
+

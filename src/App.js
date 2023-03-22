@@ -9,6 +9,7 @@ import MovieDetail from "./components/MovieDetail";
 import { useEffect } from "react";
 import CheckOut from "./components/CheckOut";
 import CheckOutThemelate from "./templates/CheckOutTemplate/CheckOutThemelate";
+import CheckOutTab from "./components/CheckOutTab";
 
 function App() {
   const href = useHref();
@@ -27,7 +28,7 @@ function App() {
         <Route path="login" element={<Login />} />
       </Route>
       <Route path="/checkout" element={<CheckOutThemelate />}>
-          <Route path=":maLichChieu" element={<CheckOut />} />
+          <Route path=":maLichChieu" element={<CheckOutTab />} />
         </Route>
     </Routes>
   );

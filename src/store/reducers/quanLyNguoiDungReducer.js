@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Navigate, useNavigate } from "react-router-dom";
+
 import { TOKEN, USER_LOGIN } from "../../config/setting";
-import { danhNhapAction } from "../actions/QuanLyNguoiDungActionThunk";
+import { danhNhapAction, layThongTinNguoiDungAction } from "../actions/QuanLyNguoiDungActionThunk";
 
 let user = {};
 
@@ -22,8 +22,10 @@ const quanLyNguoiDungReducer = createSlice({
       localStorage.setItem(USER_LOGIN, JSON.stringify(action.payload));
       localStorage.setItem(TOKEN, action.payload.accessToken);
       state.userLogin = action.payload;
-      console.log("userLogin", state.userLogin);
-    });
+    
+    }).addCase(layThongTinNguoiDungAction.fulfilled,(state,action)=>{
+        state.thongTinNguoiDung=action.payload
+    })
   },
 });
 
