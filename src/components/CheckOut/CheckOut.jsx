@@ -6,23 +6,32 @@ import {
   quanLyDatVeSelector,
   quanLyNguoiDungSelector,
 } from "../../store/selector/selector";
-import { datVeAction, layChiTietPhongVeAction } from "../../store/actions/QuanLyDatVeActionThunk";
+
+import {
+  datVeAction,
+  layChiTietPhongVeAction,
+} from "../../store/actions/QuanLyDatVeActionThunk";
 import { useParams } from "react-router-dom";
 import { chuyenTab, datVe } from "../../store/reducers/QuanLyDatveReducer";
 import _ from "lodash";
 import { ThongTinDatVe } from "../../_core/models/ThongTinDatVe";
+
 const CheckOut = () => {
   const { maLichChieu } = useParams();
+  console.log({ maLichChieu });
   const dispatch = useDispatch();
 
   const { chiTietPhongVe, danhSachGheDangDat, danhSachGheKhachDat } =
     useSelector(quanLyDatVeSelector);
+
   const { userLogin } = useSelector(quanLyNguoiDungSelector);
   const { thongTinPhim, danhSachGhe } = chiTietPhongVe;
 
   useEffect(() => {
     dispatch(layChiTietPhongVeAction(maLichChieu));
   }, []);
+
+
   let classDatVe = danhSachGheDangDat.length === 0 ? "disabledDatVe" : "datVe";
 
   const renderGhe = () => {
@@ -80,6 +89,7 @@ const CheckOut = () => {
       );
     });
   };
+
   return (
     <div className="grid grid-cols-12 ">
       <div className="col-span-9 mt-5">
@@ -166,10 +176,10 @@ const CheckOut = () => {
         <div
           onClick={() => {
             const thongTinDatVe = new ThongTinDatVe();
-            thongTinDatVe.maLichChieu =maLichChieu ;
+            thongTinDatVe.maLichChieu = maLichChieu;
             thongTinDatVe.danhSachVe = danhSachGheDangDat;
-            dispatch(layChiTietPhongVeAction(maLichChieu))
-            dispatch(chuyenTab(2))
+            dispatch(layChiTietPhongVeAction(maLichChieu));
+            dispatch(chuyenTab(2));
             dispatch(datVeAction(thongTinDatVe));
           }}
           className={`
@@ -181,6 +191,7 @@ const CheckOut = () => {
       </div>
     </div>
   );
+
 };
 
 export default CheckOut;

@@ -9,16 +9,16 @@ import _ from 'lodash'
 const MoviesShow = () => {
   const dispatch=useDispatch()
 const {arrFilm}=useSelector(quanLyPhimSelector)
-console.log({arrFilm})
+// console.log({arrFilm})
 useEffect(()=>{
   dispatch(layDSPhimAction())
 },[])
   return (
     <div>
       <h1 className="text-center  font-medium text-xl p-5  border-b-2 border-rose-600 ">PHIM ĐANG CHIẾU</h1>
-        <Movie arrFilm={_.filter(arrFilm,['dangChieu',true])}/>
+        <Movie arrFilm={_.filter(arrFilm,['dangChieu',true])} duration={3500}/>
 			<h3 className="text-center  font-medium text-xl p-5  border-b-2 border-rose-600">PHIM SẮP CHIẾU</h3>
-        <Movie arrFilm={_.filter(arrFilm,['sapChieu',true])}/>
+        <Movie arrFilm={_.filter(arrFilm,['sapChieu',true])} duration={2500}/>
     </div>
   )
 }

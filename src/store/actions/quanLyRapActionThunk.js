@@ -8,7 +8,7 @@ export const layDanhSachRapAction=createAsyncThunk('quanLyRap/layDanhSachRapActi
 
     try {
             const {data}=await quanLyRapServices.layDanhSachHeThongRap() 
-            console.log({data})    
+            // console.log({data})    
             if(data.statusCode===200){
 
                return data.content 
@@ -36,3 +36,5 @@ export const layThongTinChiTietPhimAction=createAsyncThunk('quanLyRap/layThongTi
 
 
 })
+
+

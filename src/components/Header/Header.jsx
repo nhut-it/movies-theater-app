@@ -8,7 +8,7 @@ import { TOKEN, USER_LOGIN } from '../../config/setting';
 import _ from 'lodash'
 const Header = () => {
   const {userLogin} =useSelector(quanLyNguoiDungSelector)
-  console.log('userlogin',userLogin)
+//   console.log('userlogin',userLogin)
   const navigate=useNavigate()
   const renderLogin = () => {
 		if (_.isEmpty(userLogin)) {

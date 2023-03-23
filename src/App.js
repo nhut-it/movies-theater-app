@@ -10,6 +10,11 @@ import { useEffect } from "react";
 import CheckOut from "./components/CheckOut";
 import CheckOutThemelate from "./templates/CheckOutTemplate/CheckOutThemelate";
 import CheckOutTab from "./components/CheckOutTab";
+import Register from "./components/Register";
+import AdminTemplate from "./templates/AdminTemplate/AdminTemplate";
+import Dashboard from "./components/Dashboard/Dashboard";
+import User from "./components/User";
+import EditUser from "./components/User/EditUser";
 
 function App() {
   const href = useHref();
@@ -22,14 +27,20 @@ function App() {
       <Route path="/" element={<HomeTemplate />}>
         <Route path="/" element={<Home />} />
         <Route path="detail/:movieId" element={<MovieDetail />} />
-       
       </Route>
       <Route path="auth" element={<LoginTemplate />}>
         <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
       </Route>
-      <Route path="/checkout" element={<CheckOutThemelate />}>
-          <Route path=":maLichChieu" element={<CheckOutTab />} />
-        </Route>
+
+      <Route path="/checkout/:maLichChieu" element={<CheckOutTab />} />
+
+      <Route path="/admin" element={<AdminTemplate />}>
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="users" element={<User />} />
+
+        <Route path="users/edit/:id" element={<EditUser />} />
+      </Route>
     </Routes>
   );
 }

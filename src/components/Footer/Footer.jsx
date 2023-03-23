@@ -10,7 +10,7 @@ import { quanLyRapSelector } from '../../store/selector/selector'
 const Footer = () => {
     const dispatch=useDispatch()
     const {heThongRapChieu}=useSelector(quanLyRapSelector)
-    console.log( {heThongRapChieu})
+    // console.log( {heThongRapChieu})
     useEffect(()=>{
         dispatch(layDanhSachRapAction())
     },[])

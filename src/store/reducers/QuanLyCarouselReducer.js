@@ -9,9 +9,9 @@ const QuanLyCarouselReducer=createSlice({
     },
     extraReducers:build=>{
         build.addCase(layCarouselAction.fulfilled,(state,action)=>{
-            console.log('carousel',action.payload)
+            // console.log('carousel',action.payload)
             state.arrBannerImg=action.payload
-            console.log('imgCarousel',state.arrBannerImg)
+            // console.log('imgCarousel',state.arrBannerImg)
             
         })
     }

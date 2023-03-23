@@ -4,15 +4,15 @@ import CardMovie from "../CardMovie";
 
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from "swiper";
+import { Autoplay, Pagination } from "swiper";
 import { useDispatch, useSelector } from "react-redux";
 import { layDSPhimAction } from "../../store/actions/QuanLyPhimActionThunk";
 import { quanLyPhimSelector } from "../../store/selector/selector";
 
-const Movie = (props) => {
+const Movie = ({arrFilm,duration}) => {
 
   const renderFilm = () => {
-    return props.arrFilm.map((film, index) => {
+    return arrFilm.map((film, index) => {
       return (
         <SwiperSlide key={index}>
           <CardMovie film={film} />
@@ -20,13 +20,18 @@ const Movie = (props) => {
       );
     });
   };
-  console.log({props})
+
+  
   return (
     <div>
       <Swiper
         slidesPerView={5}
         spaceBetween={30}
-        modules={[Pagination]}
+        autoplay={{
+          delay:3000,
+         
+        }}
+        modules={[Pagination,Autoplay]}
         className="mySwiper"
       >
         {renderFilm()}

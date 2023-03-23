@@ -16,7 +16,7 @@ const QuanLyPhimReducer = createSlice({
   extraReducers:build=>{
     build.addCase(layDSPhimAction.fulfilled,(state,action)=>{
         state.arrFilm=action.payload
-        console.log('dsPhim',state.arrFilm)
+        // console.log('dsPhim',state.arrFilm)
     }).addCase(layThongTinPhimAction.fulfilled,(state,action)=>{
         state.movieDetail=action.payload
     })

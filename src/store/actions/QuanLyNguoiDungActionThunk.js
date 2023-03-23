@@ -1,4 +1,5 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { notification } from "antd";
 import { Navigate, useNavigate } from "react-router-dom";
 import { NotifiFunction } from "../../components/Notification/Notification";
 import { quanLyNguoiDungServices } from "../../services/QunLyNguoiDungService";
@@ -34,4 +35,56 @@ export const layThongTinNguoiDungAction=createAsyncThunk('quanLyNguoiDung/layTho
     }
 })
 
+export const dangKyAction=createAsyncThunk('quanLyNguoiDung/dangKyAction',async(newUser)=>{
+    try {
+        const {data}=await quanLyNguoiDungServices.dangKy(newUser)
+        console.log({data})
+        if(data.statusCode===200){
+            NotifiFunction('success','Đăng Ký thành công','')
+            return data.content
+        }
 
+    } catch (error) {
+        console.log(error.response.data.content)
+        NotifiFunction('error',error.response.data.content,'')
+
+    }
+})
+
+export const layDanhSachNguoiDungAction=createAsyncThunk('quanLyNguoiDung/layDanhSachNguoiDungAction',async(tuKhoa)=>{
+    try {
+        const {data}=await quanLyNguoiDungServices.layDanhSachNguoiDung(tuKhoa)
+        if(data.statusCode === 200){
+            return data.content
+        }
+    } catch (error) {
+        console.log(error.response.data.content)
+        
+    }
+})
+
+export const capNhatThongTinNguoiDungAction=createAsyncThunk('quanLyNguoiDung/layDanhSachNguoiDungAction',async(user)=>{
+
+    try {
+        console.log('thongtincapnhat',user)
+        const {data}=await quanLyNguoiDungServices.capNhatThongTinNguoiDung(user)
+        if(data.statusCode===200){
+            alert('cap nhat nguoi dung thanh cong')
+        }
+    } catch (error) {
+        console.log(error.response.data.content)
+        
+    }
+})
+export const layDanhSachLoaiNguoiDungAction=createAsyncThunk('quanLyNguoiDung/layDanhSachLoaiNguoiDungAction',async()=>{
+    try {
+        const {data}=await quanLyNguoiDungServices.layDSLoaiNguoiDung()
+        if(data.statusCode === 200){
+            return data.content
+           
+        }
+    } catch (error) {
+        console.log(error.response.data.content)
+        
+    }
+})

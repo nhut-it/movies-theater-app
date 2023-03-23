@@ -7,7 +7,7 @@ import { quanLyRapSelector } from "../../store/selector/selector";
 
 const Cinema = () => {
   const { heThongRapChieu } = useSelector(quanLyRapSelector);
-  console.log({heThongRapChieu})
+  // console.log({heThongRapChieu})
   return (
     <div className="h-screen overflow-hidden overflow-y-auto">
       <Tabs

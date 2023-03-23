@@ -10,7 +10,7 @@ import { quanLyCarouselSelector } from "../../store/selector/selector";
 import "./HomeCarousel.scss";
 const HomeCarousel = () => {
   const { arrBannerImg } = useSelector(quanLyCarouselSelector);
-  console.log({ arrBannerImg });
+  // console.log({ arrBannerImg });
   const dispatch = useDispatch();
 
   useEffect(() => {
