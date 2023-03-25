@@ -90,7 +90,7 @@ const AddFilms = () => {
 				<div
 					className="w-2/3 mx-auto border-2 bg-gray-200 px-5 rounded-lg"
 					style={{ boxShadow: "2px 4px 10px 1px rgba(201,201,201,0.47)" }}>
-					<h3 className="text-2xl font-bold text-gray-600 text-center mt-3 ">THÊM PHIM MỚI</h3>
+					<h3 className="text-2xl mb-5 font-bold text-gray-600 text-center mt-3 ">THÊM PHIM MỚI</h3>
 					<Form.Item label="Tên phim">
 						<Input
 							name="tenPhim"
