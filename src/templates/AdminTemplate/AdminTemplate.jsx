@@ -12,7 +12,7 @@ import {
   UnorderedListOutlined,
   UserAddOutlined,
 } from "@ant-design/icons";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { Navigate, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { TOKEN, USER_LOGIN } from "../../config/setting";
 import _ from "lodash";
 import { useSelector } from "react-redux";
@@ -57,6 +57,18 @@ const AdminTemplate = () => {
       )}
     </Fragment>
   );
+
+if (!localStorage.getItem(USER_LOGIN)) {
+		alert("Bạn không có quyền truy cập vào trang này !");
+		return <Navigate to="/" />;
+	}
+
+	if (userLogin.maLoaiNguoiDung !== "QuanTri") {
+		alert("Bạn không có quyền truy cập vào trang này !");
+		return <Navigate to="/" />;
+	}
+
+
   return (
     <div>
       <Layout style={{ minHeight: "100vh" }}>
