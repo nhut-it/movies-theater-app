@@ -69,13 +69,15 @@ export const capNhatThongTinNguoiDungAction=createAsyncThunk('quanLyNguoiDung/la
         console.log('thongtincapnhat',user)
         const {data}=await quanLyNguoiDungServices.capNhatThongTinNguoiDung(user)
         if(data.statusCode===200){
-            alert('cap nhat nguoi dung thanh cong')
+           NotifiFunction('success','Cập nhật thành công','')
+           
         }
     } catch (error) {
         console.log(error.response.data.content)
         
     }
 })
+
 export const layDanhSachLoaiNguoiDungAction=createAsyncThunk('quanLyNguoiDung/layDanhSachLoaiNguoiDungAction',async()=>{
     try {
         const {data}=await quanLyNguoiDungServices.layDSLoaiNguoiDung()
@@ -86,5 +88,36 @@ export const layDanhSachLoaiNguoiDungAction=createAsyncThunk('quanLyNguoiDung/la
     } catch (error) {
         console.log(error.response.data.content)
         
+    }
+})
+
+export const themNguoiDungAction=createAsyncThunk('quanLyNguoiDung/themNguoiDungAction',async(newUser)=>{
+    try {
+        const {data}=await quanLyNguoiDungServices.themNguoiDung(newUser)
+        if(data.statusCode === 200){
+            NotifiFunction('success','Thêm người dùng thành công','')
+        }
+        
+        
+        
+    } catch (error) {
+        NotifiFunction('error',error.response.data.content,'')
+        console.log(error.response.data.content)
+    }
+})
+
+
+export const xoaNguoiDungAction=createAsyncThunk('quanLyNguoiDung/xoaNguoiDungAction',async(taiKhoan)=>{
+
+
+    console.log('xoa',taiKhoan)
+    try {
+        const {data}=await quanLyNguoiDungServices.xoaNguoiDung(taiKhoan)
+        console.log('xao',data)
+        if(data.statusCode === 200){
+            NotifiFunction('success','','')
+        }
+    } catch (error) {
+        console.log(error.response.data.content)
     }
 })

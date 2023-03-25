@@ -28,3 +28,13 @@ export const datVeAction=createAsyncThunk('quanLyDatVe/datVeAction',async(thongT
         console.log(error)
     }
 })
+
+
+
+export const taoLichChieuAciton=createAsyncThunk('quanLyDatVe/taoLichChieuAciton', async (newLichchieu)=>{
+    try {
+        const {data}=await quanLyDatVeServices.taoLichChieu(newLichchieu)
+    } catch (error) {
+        console.log(error.response.data.content)
+    }
+})

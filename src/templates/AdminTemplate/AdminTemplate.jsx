@@ -81,7 +81,7 @@ const AdminTemplate = () => {
               {
                 key: "1",
                 icon: <BarChartOutlined />,
-                label: <NavLink to="/admin/dashboard">Dashboard</NavLink>,
+                label: <NavLink to="/admin">Dashboard</NavLink>,
               },
               {
                 key: "2",
@@ -97,7 +97,7 @@ const AdminTemplate = () => {
                     key: "22",
                     icon: <UserAddOutlined />,
                     label: (
-                      <NavLink to="/admin/users/adduser">Add user</NavLink>
+                      <NavLink to="users/adduser">Add user</NavLink>
                     ),
                   },
                 ],
@@ -110,13 +110,13 @@ const AdminTemplate = () => {
                   {
                     key: "31",
                     icon: <ProfileOutlined />,
-                    label: <NavLink to="/admin/films">Films</NavLink>,
+                    label: <NavLink to="films">Films</NavLink>,
                   },
                   {
                     key: "32",
                     icon: <FileAddOutlined />,
                     label: (
-                      <NavLink to="/admin/films/addfilm">Add film</NavLink>
+                      <NavLink to="films/addfilms">Add film</NavLink>
                     ),
                   },
                 ],

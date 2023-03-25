@@ -2,52 +2,42 @@ import { Button, Form, Input, Select } from 'antd';
 import { useFormik } from 'formik';
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { GROUPID } from '../../../config/setting';
-import { capNhatThongTinNguoiDungAction, layDanhSachLoaiNguoiDungAction, layDanhSachNguoiDungAction } from '../../../store/actions/QuanLyNguoiDungActionThunk';
+import { layDanhSachLoaiNguoiDungAction, layThongTinNguoiDungAction, themNguoiDungAction } from '../../../store/actions/QuanLyNguoiDungActionThunk';
 import { quanLyNguoiDungSelector } from '../../../store/selector/selector';
 import { validationUserInfo } from '../../../_core/schema/Validate';
 
-const EditUser = () => {
-
+const AddUser = () => {
     const dispatch=useDispatch()
-	const navigate=useNavigate()
-    const {users}=useSelector(quanLyNguoiDungSelector)
-    const {userTypes} =useSelector(quanLyNguoiDungSelector)
-    console.log('userType',userTypes)
-    const {id} = useParams();
- 
-    useEffect(() => {
-
-		dispatch(layDanhSachLoaiNguoiDungAction());
-		dispatch(layDanhSachNguoiDungAction(id));
-	}, []);
-
-    const user=users[0]
+    const navigate=useNavigate()
+    const {userTypes}=useSelector(quanLyNguoiDungSelector)
+    useEffect(()=>{
+        dispatch(layDanhSachLoaiNguoiDungAction())
+    },[])
     const formik = useFormik({
-		enableReinitialize: true,
 		initialValues: {
-			taiKhoan: user.taiKhoan,
-			matKhau: user.matKhau,
-			email: user.email,
-			soDt: user.soDt,
+			taiKhoan: "",
+			matKhau: "",
+			email: "",
+			soDt: "",
 			maNhom: GROUPID,
-			maLoaiNguoiDung: user.maLoaiNguoiDung,
-			hoTen: user.hoTen,
+			maLoaiNguoiDung: "",
+			hoTen: "",
 		},
 		validationSchema: validationUserInfo,
-
 		onSubmit: (values) => {
-            console.log('capnhat',values)
-			console.log('gui',typeof values.soDt)
-			dispatch(capNhatThongTinNguoiDungAction(values));
-			navigate(-1)
+            console.log('themnguoiDung',values)
+			dispatch(themNguoiDungAction(values));
+            dispatch(layThongTinNguoiDungAction())
+            navigate('/admin/users')
+            
 		},
 	});
-
     const onChange = (value) => {
 		formik.setFieldValue("maLoaiNguoiDung", value);
 	};
+
     return (
 		<div className="h-full flex flex-col justify-center">
 			<Form
@@ -59,11 +49,17 @@ const EditUser = () => {
 				<div
 					className="w-2/3 mx-auto border-2 bg-gray-200 p-5 rounded-lg "
 					style={{ boxShadow: "2px 4px 10px 1px rgba(201,201,201,0.47)" }}>
-					<h3 className="text-2xl text-gray-600 font-bold text-center">CHỈNH SỬA THÔNG TIN NGƯỜI DÙNG</h3>
+					<h3 className="text-2xl text-gray-600 font-bold text-center">THÊM NGƯỜI DÙNG</h3>
 					<div className="flex justify-center">
 						<div className="w-full p-5">
 							<Form.Item label="Tài Khoản">
-								<Input name="taiKhoan" onChange={formik.handleChange} value={formik.values.taiKhoan} disabled />
+								<Input
+									name="taiKhoan"
+									onChange={formik.handleChange}
+									value={formik.values.taiKhoan}
+									style={formik.errors.taiKhoan ? { borderColor: "red" } : {}}
+								/>
+								{formik.errors.taiKhoan && <p className="text-red-600">{formik.errors.taiKhoan}</p>}
 							</Form.Item>
 							<Form.Item label="Mật khẩu">
 								<Input
@@ -106,7 +102,7 @@ const EditUser = () => {
 							</Form.Item>
 							<Form.Item label="Số điện thoại">
 								<Input
-									type="text"
+									type="number"
 									name="soDt"
 									value={formik.values.soDt}
 									onChange={formik.handleChange}
@@ -117,16 +113,20 @@ const EditUser = () => {
 							<Form.Item label="Loại người dùng">
 								<Select
 									onChange={onChange}
-									value={formik.values.maLoaiNguoiDung}
-
+									style={
+										formik.errors.maLoaiNguoiDung ? { borderColor: "red", width: "100%" } : { width: "100%" }
+									}
 									options={userTypes.map((type, index) => {
 										return { label: type.tenLoai, value: type.maLoaiNguoiDung };
 									})}
 								/>
+								{formik.errors.maLoaiNguoiDung && (
+									<p className="text-red-600">{formik.errors.maLoaiNguoiDung}</p>
+								)}
 							</Form.Item>
 							<div className="flex justify-end">
 								<Button htmlType="submit" className='bg-[#1677FF] text-white	hover:text-white' disabled={!formik.isValid}>
-									Cập nhật
+									Thêm
 								</Button>
 							</div>
 						</div>
@@ -137,4 +137,4 @@ const EditUser = () => {
 	);
 }
 
-export default EditUser
+export default AddUser

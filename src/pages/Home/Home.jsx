@@ -18,7 +18,7 @@ const Home = () => {
           showModal={movieDetail ? true : false}
         />
         <Cinema />
-
+        
       </div>
     </>
   );

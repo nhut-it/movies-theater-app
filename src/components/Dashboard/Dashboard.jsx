@@ -3,12 +3,12 @@ import React, { useEffect } from 'react'
 import { Line } from 'react-chartjs-2';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { quanLyNguoiDungSelector, quanLyPhimSelector, quanLyRapSelector } from '../../../store/selector/selector';
+import { quanLyNguoiDungSelector, quanLyPhimSelector, quanLyRapSelector } from '../../store/selector/selector';
 import style from './Dashboard.module.scss'
 import {faker} from '@faker-js/faker'
-import { layDanhSachNguoiDungAction } from '../../../store/actions/QuanLyNguoiDungActionThunk';
-import { layDSPhimAction } from '../../../store/actions/QuanLyPhimActionThunk';
-import { layDanhSachRapAction } from '../../../store/actions/quanLyRapActionThunk';
+import { layDanhSachNguoiDungAction } from '../../store/actions/QuanLyNguoiDungActionThunk';
+import { layDSPhimAction } from '../../store/actions/QuanLyPhimActionThunk';
+import { layDanhSachRapAction } from '../../store/actions/quanLyRapActionThunk';
 import {
 	Chart as ChartJS,
 	CategoryScale,

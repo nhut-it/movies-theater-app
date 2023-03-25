@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { layDanhSachRapAction, layThongTinChiTietPhimAction } from "../actions/quanLyRapActionThunk";
+import { layDanhSachRapAction, layThongTinChiTietPhimAction, layThongTinCumRapAction, layThongTinHeThongRapAction } from "../actions/quanLyRapActionThunk";
 
 
 const quanLyRapReucer=createSlice({
@@ -7,6 +7,8 @@ const quanLyRapReucer=createSlice({
     initialState:{
         heThongRapChieu: [],
         filmDetail: {},
+        thongTinRapChieu:[],
+        thongTinCumRap:[]
     },
     extraReducers:build=>{
         build.addCase(layDanhSachRapAction.fulfilled,(state,action)=>{
@@ -15,6 +17,10 @@ const quanLyRapReucer=createSlice({
 
         }).addCase(layThongTinChiTietPhimAction.fulfilled,(state,aciton)=>{
             state.filmDetail=aciton.payload
+        }).addCase(layThongTinHeThongRapAction.fulfilled,(state,action)=>{
+            state.thongTinRapChieu=action.payload
+        }).addCase(layThongTinCumRapAction.fulfilled,(state,action)=>{
+            state.thongTinCumRap=action.payload
         })
     }
 

@@ -9,9 +9,9 @@ import _ from 'lodash'
 const MoviesShow = () => {
   const dispatch=useDispatch()
 const {arrFilm}=useSelector(quanLyPhimSelector)
-// console.log({arrFilm})
+console.log({arrFilm})
 useEffect(()=>{
-  dispatch(layDSPhimAction())
+  dispatch(layDSPhimAction(''))
 },[])
   return (
     <div>
